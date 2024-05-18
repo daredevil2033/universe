@@ -1,26 +1,17 @@
 version: 2.1
-orbs:
-  sonarcloud: sonarsource/sonarcloud@2.0.0
+
 jobs:
-  test-java:
+  build:
     docker:
-      - image: cimg/openjdk:17.0
+      - image: 'cimg/openjdk:17.0'
     steps:
       - checkout
       - run:
-          name: Calculate cache key
-          command: find . -name 'pom.xml' | sort | xargs cat > /tmp/CIRCLECI_CACHE_KEY
-      - restore_cache:
-          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
-      - run:
-          command: mvn verify
-      - store_test_results:
-          path: target/surefire-reports
-      - save_cache:
-          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
-          paths:
-            - ~/.m2/repository
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar -Dsonar.projectKey=daredevil2033_universe
+
 workflows:
-  build-and-test:
+  main:
     jobs:
-      - test-java
+      - build:
+          context: SonarCloud

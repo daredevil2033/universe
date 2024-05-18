@@ -1,10 +1,9 @@
 version: 2.1
-orbs:
-  sonarcloud: sonarsource/sonarcloud@2.0.0
+
 jobs:
-  test-java:
+  build:
     docker:
-      - image: cimg/openjdk:17.0
+      - image: 'cimg/openjdk:17.0'
     steps:
       - checkout
       - run:
@@ -20,9 +19,12 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
-      - sonarcloud/scan
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn sonar:sonar
+
 workflows:
   build-and-test:
     jobs:
-      - test-java:
-          context: sonarcloud
+      - build:
+          context: SonarCloud

@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar -Dsonar.projectKey=daredevil2033_universe
+          command: mvn verify sonar:sonar -Dsonar.projectKey=universe
 
 workflows:
   main:

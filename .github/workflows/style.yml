@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check style
-      - uses: dbelyaev/action-checkstyle@v1
+        uses: dbelyaev/action-checkstyle@v1

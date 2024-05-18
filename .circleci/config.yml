@@ -20,7 +20,9 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
+      - sonarcloud/scan
 workflows:
   build-and-test:
     jobs:
-      - test-java
+      - test-java:
+          context: sonarcloud

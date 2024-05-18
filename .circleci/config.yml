@@ -1,6 +1,8 @@
 # This config was automatically generated from your source code
 # Stacks detected: cicd:github-actions:.github/workflows,deps:java:.
 version: 2.1
+orbs:
+  sonarcloud: sonarsource/sonarcloud@2.0.0
 jobs:
   test-java:
     docker:

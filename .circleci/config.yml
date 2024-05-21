@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  coverage-reporter: codacy/coverage-reporter@13.16.6
+
 jobs:
   build:
     docker:
@@ -21,7 +24,10 @@ jobs:
             - ~/.m2/repository
       - run:
           name: Analyze on SonarCloud
-          command: mvn sonar:sonar
+          command: mvn sonar:sonar -Pcoverage
+      - coverage-reporter/send-report:
+          project-token: $CODACY_PROJECT_TOKEN
+          coverage-reports: target/site/jacoco/jacoco.xml
 
 workflows:
   build-and-test:

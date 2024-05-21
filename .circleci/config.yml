@@ -15,7 +15,7 @@ jobs:
       - restore_cache:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
       - run:
-          command: mvn verify
+          command: mvn verify -Pcoverage
       - store_test_results:
           path: target/surefire-reports
       - save_cache:
@@ -24,7 +24,7 @@ jobs:
             - ~/.m2/repository
       - run:
           name: Analyze on SonarCloud
-          command: mvn sonar:sonar -Pcoverage
+          command: mvn sonar:sonar
       - coverage-reporter/send_report:
           project-token: $CODACY_PROJECT_TOKEN
           coverage-reports: target/site/jacoco/jacoco.xml

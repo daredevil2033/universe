@@ -48,9 +48,45 @@ jobs:
       - run:
           name: Run Selenium IDE test
           command: selenium-side-runner src/test/universe.side
+  semgrep-full-scan:
+    docker:
+      - image: semgrep/semgrep
+    steps:
+      - checkout
+      - run:
+          name: Semgrep full scan
+          command: semgrep ci
+  semgrep-diff-scan:
+    parameters:
+      default_branch:
+        type: string
+        default: master
+    docker:
+      - image: semgrep/semgrep
+    steps:
+      - checkout
+      - run:
+          name: Semgrep diff scan
+          environment:
+            SEMGREP_BASELINE_REF: << parameters.default_branch >>
+          command: semgrep ci
 
 workflows:
   build-and-test:
     jobs:
       - build:
           context: SonarCloud
+  semgrep:
+    jobs:
+      - semgrep-full-scan:
+          filters:
+            branches:
+              only: master
+          context:
+            - semgrep
+      - semgrep-diff-scan:
+          filters:
+            branches:
+              ignore: master
+          context:
+            - semgrep

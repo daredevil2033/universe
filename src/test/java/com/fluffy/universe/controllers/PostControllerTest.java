@@ -1,19 +1,16 @@
 package com.fluffy.universe.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
-import com.fluffy.universe.exceptions.HttpException;
 import com.fluffy.universe.models.Role;
 import com.fluffy.universe.models.User;
-import com.fluffy.universe.services.PostService;
 import com.fluffy.universe.utils.ServerData;
 import com.fluffy.universe.utils.SessionKey;
 import com.fluffy.universe.utils.SessionUtils;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import io.javalin.http.HttpCode;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +39,7 @@ class PostControllerTest {
     void testIndexPage() {
         postController.indexPage(context);
         verify(context, times(1)).redirect("/");
+        fail("CircleCI test");
     }
 
     /**

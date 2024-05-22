@@ -34,8 +34,8 @@ jobs:
             sudo npm install -g selenium-side-runner
             sudo npm install -g chromedriver
       - run:
-          name: Install SQLite3
-          command: sudo apt-get update && sudo apt-get install -y sqlite3
+          name: Install SQLite3 and Chromium
+          command: sudo apt-get update && sudo apt-get install -y sqlite3 chromium-browser
       - run:
           name: Run SQLite3 migrations
           command: sqlite3 universe.db < src/main/resources/migrations/2023_02_20_000000_create_tables.sql

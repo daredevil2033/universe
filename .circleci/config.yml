@@ -51,6 +51,8 @@ jobs:
   semgrep-full-scan:
     docker:
       - image: semgrep/semgrep
+    environment:
+      CIRCLE_REPOSITORY_URL: https://github.com/daredevil2033/universe.git
     steps:
       - checkout
       - run:
@@ -63,6 +65,8 @@ jobs:
         default: master
     docker:
       - image: semgrep/semgrep
+    environment:
+      CIRCLE_REPOSITORY_URL: https://github.com/daredevil2033/universe.git
     steps:
       - checkout
       - run:

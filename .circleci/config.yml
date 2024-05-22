@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: 'cimg/openjdk:17.0'
+      - image: cimg/openjdk:17.0-node
     steps:
       - checkout
       - run:
@@ -28,6 +28,24 @@ jobs:
       - coverage-reporter/send_report:
           project-token: $CODACY_PROJECT_TOKEN
           coverage-reports: target/site/jacoco/jacoco.xml
+      - run:
+          name: Install Selenium-side-runner and ChromeDriver
+          command: |
+            npm install -g selenium-side-runner
+            npm install -g chromedriver
+      - run:
+          name: Install SQLite3
+          command: sudo apt-get update && sudo apt-get install -y sqlite3
+      - run:
+          name: Run SQLite3 migrations
+          command: sqlite3 universe.db < src/main/resources/migrations/2023_02_20_000000_create_tables.sql
+      - run:
+          name: Start application
+          command: java -jar target/universe.jar application.properties
+          background: true
+      - run:
+          name: Run Selenium IDE test
+          command: selenium-side-runner src/test/universe.side
 
 workflows:
   build-and-test:

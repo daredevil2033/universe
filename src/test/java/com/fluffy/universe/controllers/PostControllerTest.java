@@ -39,7 +39,6 @@ class PostControllerTest {
     void testIndexPage() {
         postController.indexPage(context);
         verify(context, times(1)).redirect("/");
-        fail("CircleCI test");
     }
 
     /**

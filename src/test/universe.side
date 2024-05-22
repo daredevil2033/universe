@@ -1,11 +1,11 @@
 {
-  "id": "62f734c5-a3b1-4bfc-a93f-51c59bc5836d",
+  "id": "145fccc6-2dc6-4abb-981f-1cbbea48f574",
   "version": "2.0",
   "name": "universe",
   "url": "http://localhost:7000",
   "tests": [{
     "id": "e7cd2fbb-bacb-4f0c-90bd-33571ae1d3d5",
-    "name": "SignUp",
+    "name": "UniverseTest",
     "commands": [{
       "id": "2ad2df2a-adf5-4059-9efa-7997299c224e",
       "comment": "",
@@ -25,32 +25,6 @@
         ["xpath=//div/a", "xpath:position"]
       ],
       "value": ""
-    }, {
-      "id": "5686c1c7-c378-4c72-a1cd-aa22ab443079",
-      "comment": "",
-      "command": "type",
-      "target": "id=sign-up__email",
-      "targets": [
-        ["id=sign-up__email", "id"],
-        ["name=email", "name"],
-        ["css=#sign-up__email", "css:finder"],
-        ["xpath=//input[@id='sign-up__email']", "xpath:attributes"],
-        ["xpath=//div[3]/input", "xpath:position"]
-      ],
-      "value": "test@gmail.com"
-    }, {
-      "id": "36391185-c1d1-48c7-b4e4-a0e60c07ba79",
-      "comment": "",
-      "command": "type",
-      "target": "id=sign-up__password",
-      "targets": [
-        ["id=sign-up__password", "id"],
-        ["name=password", "name"],
-        ["css=#sign-up__password", "css:finder"],
-        ["xpath=//input[@id='sign-up__password']", "xpath:attributes"],
-        ["xpath=//div[4]/input", "xpath:position"]
-      ],
-      "value": "F6dvj!FGE9MYR"
     }, {
       "id": "0c073a1e-3f46-4c6a-b9f2-4d78b3a42754",
       "comment": "",
@@ -77,6 +51,32 @@
         ["xpath=//div[2]/input", "xpath:position"]
       ],
       "value": "LastName"
+    }, {
+      "id": "5686c1c7-c378-4c72-a1cd-aa22ab443079",
+      "comment": "",
+      "command": "type",
+      "target": "id=sign-up__email",
+      "targets": [
+        ["id=sign-up__email", "id"],
+        ["name=email", "name"],
+        ["css=#sign-up__email", "css:finder"],
+        ["xpath=//input[@id='sign-up__email']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "test@gmail.com"
+    }, {
+      "id": "36391185-c1d1-48c7-b4e4-a0e60c07ba79",
+      "comment": "",
+      "command": "type",
+      "target": "id=sign-up__password",
+      "targets": [
+        ["id=sign-up__password", "id"],
+        ["name=password", "name"],
+        ["css=#sign-up__password", "css:finder"],
+        ["xpath=//input[@id='sign-up__password']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "F6dvj!FGE9MYR"
     }, {
       "id": "685d738a-ac91-4058-81aa-6b25e823f692",
       "comment": "",
@@ -111,17 +111,6 @@
         ["xpath=//div[3]/button", "xpath:position"],
         ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
       ],
-      "value": ""
-    }]
-  }, {
-    "id": "f8f211c4-6bb1-4fb7-99d2-c963159aed4c",
-    "name": "CreatePost",
-    "commands": [{
-      "id": "83a4418c-434e-42c7-92bf-2bc49f959e97",
-      "comment": "",
-      "command": "open",
-      "target": "/",
-      "targets": [],
       "value": ""
     }, {
       "id": "4b00988e-2899-4240-88d4-86ed213842ec",
@@ -181,17 +170,6 @@
         ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
       ],
       "value": ""
-    }]
-  }, {
-    "id": "d8d9acdd-b94c-4003-a311-d7d4c4551401",
-    "name": "CommentPost",
-    "commands": [{
-      "id": "19961d25-0c52-4dec-9426-8a1a3a5c829a",
-      "comment": "",
-      "command": "open",
-      "target": "/",
-      "targets": [],
-      "value": ""
     }, {
       "id": "fbbb69ea-eee7-4732-ba1c-5405adb48eee",
       "comment": "",
@@ -230,14 +208,7 @@
       "value": ""
     }]
   }],
-  "suites": [{
-    "id": "a0466055-b0e4-4495-ba92-1ee92edd26e0",
-    "name": "UniverseTest",
-    "persistSession": false,
-    "parallel": false,
-    "timeout": 300,
-    "tests": ["e7cd2fbb-bacb-4f0c-90bd-33571ae1d3d5", "f8f211c4-6bb1-4fb7-99d2-c963159aed4c", "d8d9acdd-b94c-4003-a311-d7d4c4551401"]
-  }],
+  "suites": [],
   "urls": ["http://localhost:7000/"],
   "plugins": []
 }

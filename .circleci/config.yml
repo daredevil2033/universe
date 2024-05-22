@@ -31,8 +31,8 @@ jobs:
       - run:
           name: Install Selenium-side-runner and ChromeDriver
           command: |
-            npm install -g selenium-side-runner
-            npm install -g chromedriver
+            sudo npm install -g selenium-side-runner
+            sudo npm install -g chromedriver
       - run:
           name: Install SQLite3
           command: sudo apt-get update && sudo apt-get install -y sqlite3

@@ -82,11 +82,9 @@ workflows:
           filters:
             branches:
               only: master
-          context:
-            - semgrep
+          context: SonarCloud
       - semgrep-diff-scan:
           filters:
             branches:
               ignore: master
-          context:
-            - semgrep
+          context: SonarCloud

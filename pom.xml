@@ -102,6 +102,12 @@
             <version>6.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>7.3.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -158,6 +164,11 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.1</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/SelenideTest.java</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>

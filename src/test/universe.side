@@ -179,7 +179,7 @@
         ["linkText=Read more", "linkText"],
         ["css=.card__button", "css:finder"],
         ["xpath=//a[contains(text(),'Read more')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/posts/5')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/posts/1')]", "xpath:href"],
         ["xpath=//div/a", "xpath:position"],
         ["xpath=//a[contains(.,'Read more')]", "xpath:innerText"]
       ],

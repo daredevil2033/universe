@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "afbafa3f-39dd-4086-bd31-864b10b26c0f",
+		"name": "Universe",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24908258"
+	},
+	"item": [
+		{
+			"name": "Sign Up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 OK status\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest('http://127.0.0.1:7000/sign-up', function (err, res) {\r",
+							"    let $ = cheerio.load(res.text());\r",
+							"    let csrfToken = $('input[name=\"_csrf\"]').val();\r",
+							"    pm.environment.set(\"csrfToken\", csrfToken);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_csrf",
+							"value": "{{csrfToken}}",
+							"type": "text"
+						},
+						{
+							"key": "first-name",
+							"value": "FirstName",
+							"type": "text"
+						},
+						{
+							"key": "last-name",
+							"value": "LastName",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "F6dvj!FGE9MYR",
+							"type": "text"
+						},
+						{
+							"key": "confirm-password",
+							"value": "F6dvj!FGE9MYR",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7000/sign-up",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7000",
+					"path": [
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign Out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 OK status\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_csrf",
+							"value": "{{csrfToken}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7000/sign-out",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7000",
+					"path": [
+						"sign-out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign In",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 OK status\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_csrf",
+							"value": "{{csrfToken}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "F6dvj!FGE9MYR",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7000/sign-in",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7000",
+					"path": [
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 OK status\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_csrf",
+							"value": "{{csrfToken}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Post Title",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Post Body",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7000/posts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 OK status\", () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_csrf",
+							"value": "{{csrfToken}}",
+							"type": "text"
+						},
+						{
+							"key": "parent-id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "post-id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Post Comment",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7000/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "csrfToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,31 @@
+app:
+  applicationId: 15170c7a-0c04-4fbf-8dbd-155ab88814e8
+  env: Development
+  host: http://localhost:7000
+  antiCsrfParam: "_csrf"
+  authentication:
+    loggedInIndicator: "\\QNew post\\E"
+    loggedOutIndicator: "\\QSign in\\E"
+    usernamePassword:
+      type: FORM
+      loginPath: /sign-in
+      loginPagePath: /sign-in
+      usernameField: email
+      passwordField: password
+      scanUsername: test@gmail.com
+      scanPassword: F6dvj!FGE9MYR
+    cookieAuthorization:
+      cookieNames:
+        - "JSESSIONID"
+    testPath:
+      path: /dashboard
+      success: "HTTP.*200.*"
+  waitForAppTarget:
+    path: /
+    pollDelay: 1000
+    waitTimeoutMillis: 300000
+tags:
+  - name: _STACKHAWK_GIT_COMMIT_SHA
+    value: ${CIRCLE_SHA1}
+  - name: _STACKHAWK_GIT_BRANCH
+    value: ${CIRCLE_BRANCH}

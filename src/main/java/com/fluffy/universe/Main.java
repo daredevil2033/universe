@@ -25,7 +25,7 @@ public class Main {
                 //Fix Missing Anti-clickjacking Header
                 headers.xFrameOptions(Headers.XFrameOptions.SAMEORIGIN);
                 //Fix Content Security Policy (CSP) Header Not Set
-                headers.contentSecurityPolicy("default-src 'self'");
+                //headers.contentSecurityPolicy("default-src 'self'; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com");
                 //Fix X-Content-Type-Options Header Missing
                 headers.xContentTypeOptionsNoSniff();
                 return headers;

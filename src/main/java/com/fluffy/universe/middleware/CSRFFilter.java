@@ -36,10 +36,9 @@ public final class CSRFFilter {
     }
 
     public static void generateToken(Context context) {
-        //Fix Anti CSRF Tokens Scanner
-        /*if (context.sessionAttribute(SessionKey.CSRF) != null) {
+        if (context.sessionAttribute(SessionKey.CSRF) != null) {
             return;
-        }*/
+        }
 
         Map<String, Object> model = context.sessionAttribute(SessionKey.MODEL);
         String csrfToken = UUID.randomUUID().toString();

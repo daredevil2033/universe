@@ -36,8 +36,11 @@ jobs:
           name: Install Selenium-side-runner
           command: sudo npm install -g selenium-side-runner
       - run:
-          name: Install SQLite3
-          command: sudo apt-get update && sudo apt-get install -y sqlite3
+          name: Install dependencies
+          command: sudo apt-get update && sudo apt-get install -y sqlite3 python3 python3-pip
+      - run:
+          name: Install pip dependencies
+          command: pip3 install robotframework robotframework-seleniumlibrary
       - run:
           name: Run SQLite3 migrations
           command: sqlite3 universe.db < src/main/resources/migrations/2023_02_20_000000_create_tables.sql
@@ -46,16 +49,19 @@ jobs:
           command: java -jar target/universe.jar application.properties
           background: true
       - run:
-          name: Run Selenium IDE test
-          command: selenium-side-runner src/test/universe.side
+          name: Run Robot Framework test
+          command: robot src/test/UniverseTest.robot
+#      - run:
+#          name: Run Selenium IDE test
+#          command: selenium-side-runner src/test/universe.side
       - run:
           command: |
             echo 'export HAWK_VERSION=$(curl -o- https://api.stackhawk.com/hawkscan/version)' >> "$BASH_ENV"
             echo 'export PATH="hawk-${HAWK_VERSION}:${PATH}"' >> "$BASH_ENV"
       - run: curl -v https://download.stackhawk.com/hawk/cli/hawk-"${HAWK_VERSION}".zip -o hawk.zip
       - run: unzip hawk.zip
-      #- run: npm install
-      #- run: nohup npm run start &
+#      - run: npm install
+#      - run: nohup npm run start &
       - run: hawk --api-key="${HAWK_API_KEY}" scan --env CIRCLE_SHA1="$CIRCLE_SHA1" --env CIRCLE_BRANCH="$CIRCLE_BRANCH" stackhawk.yml
   semgrep-full-scan:
     docker:

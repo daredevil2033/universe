@@ -4,10 +4,17 @@ orbs:
   coverage-reporter: codacy/coverage-reporter@13.16.6
   browser-tools: circleci/browser-tools@1.4.8
 
+executors:
+    openjdk:
+        docker:
+        - image: cimg/openjdk:17.0-browsers
+    semgrep:
+        docker:
+        - image: semgrep/semgrep
+
 jobs:
   build:
-    docker:
-      - image: cimg/openjdk:17.0-browsers
+    executor: openjdk
     steps:
       - checkout
       - run:
@@ -64,8 +71,7 @@ jobs:
 #      - run: nohup npm run start &
       - run: hawk --api-key="${HAWK_API_KEY}" scan --env CIRCLE_SHA1="$CIRCLE_SHA1" --env CIRCLE_BRANCH="$CIRCLE_BRANCH" stackhawk.yml
   semgrep-full-scan:
-    docker:
-      - image: semgrep/semgrep
+    executor: semgrep
     environment:
       CIRCLE_REPOSITORY_URL: https://github.com/daredevil2033/universe.git
     steps:
@@ -78,8 +84,7 @@ jobs:
       default_branch:
         type: string
         default: master
-    docker:
-      - image: semgrep/semgrep
+    executor: semgrep
     environment:
       CIRCLE_REPOSITORY_URL: https://github.com/daredevil2033/universe.git
     steps:
